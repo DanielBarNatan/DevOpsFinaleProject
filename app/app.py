@@ -26,6 +26,11 @@ def check_age():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
+@main_bp.route("/requests", methods=["GET"])
+def requests_count():
+    count = REQUEST_COUNTER._value.get()
+    return jsonify({"total_requests": int(count)}), 200
+
 @main_bp.route("/health")
 def health():
     return "OK", 200
