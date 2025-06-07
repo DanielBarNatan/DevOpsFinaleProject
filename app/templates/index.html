@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Age Checker</title>
+</head>
+
+<body>
+    <h1>Check if Your Age is Legal</h1>
+    <div class="input-section">
+        <input type="date" id="birthDate" />
+        <button onclick="checkAge()">Check</button>
+    </div>
+    <div class="result-section">
+        <p id="result"></p>
+    </div>
+
+    <script>
+        async function checkAge() {
+            const birthDate = document.getElementById("birthDate").value;
+            if (!birthDate) {
+                document.getElementById("result").innerText = "Please enter a birth date.";
+                return;
+            }
+
+            const res = await fetch("/check-age", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ birth_date: birthDate })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                document.getElementById("result").innerText =
+                    data.legal ? `✅ Legal (Age: ${data.age})` : `❌ Underage (Age: ${data.age})`;
+            } else {
+                document.getElementById("result").innerText = "Error: " + data.error;
+            }
+        }
+    </script>
+</body>
+
+</html>
