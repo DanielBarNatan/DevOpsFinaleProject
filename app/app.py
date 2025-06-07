@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, jsonify, Response
+from flask import Flask, Blueprint, request, jsonify, Response, render_template
 from datetime import datetime
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER  # וודא שהקובץ metrics.py במיקום הנכון
@@ -7,7 +7,7 @@ main_bp = Blueprint("main", __name__)
 
 @main_bp.route("/")
 def index():
-    return "Welcome to the Age Check API", 200
+    return render_template("index.html")
 
 @main_bp.route("/check-age", methods=["POST"])
 def check_age():
