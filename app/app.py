@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, request, jsonify, Response, render_template
 from datetime import datetime
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
-from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER  # וודא שהקובץ metrics.py במיקום הנכון
+from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER
 
 main_bp = Blueprint("main", __name__)
 
@@ -37,17 +37,9 @@ def health():
 
 @main_bp.route("/metrics")
 def metrics():
-    # מחזיר את המדדים בפורמט ש־Prometheus יודע לקרוא
     return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
-
 
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(main_bp)
     return app
-
-
-if __name__ == "__main__":
-    app = create_app()
-    app.run(host="0.0.0.0", port=5000)
-
