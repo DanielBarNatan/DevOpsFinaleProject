@@ -11,4 +11,3 @@ AGE_LEGAL_COUNTER = Counter(
 AGE_ILLEGAL_COUNTER = Counter(
     "illegal_age_requests_total", "Number of users under legal age (<18)"
 )
-
