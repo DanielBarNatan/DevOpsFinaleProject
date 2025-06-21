@@ -11,4 +11,3 @@ AGE_LEGAL_COUNTER = Counter(
 REQUEST_LATENCY = Histogram(
     "request_latency_seconds", "Time spent processing request"
 )
-
