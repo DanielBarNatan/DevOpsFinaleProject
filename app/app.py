@@ -2,8 +2,8 @@ from flask import Flask, Blueprint, request, jsonify, Response, render_template
 from datetime import datetime
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 import time
-from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER, AGE_ILLEGAL_COUNTER, REQUEST_LATENCY
-
+from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER
+from .metrics import AGE_ILLEGAL_COUNTER, REQUEST_LATENCY
 
 main_bp = Blueprint("main", __name__)
 
@@ -61,4 +61,3 @@ def create_app():
     app = Flask(__name__)
     app.register_blueprint(main_bp)
     return app
-
