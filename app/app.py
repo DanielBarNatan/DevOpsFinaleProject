@@ -12,7 +12,7 @@ def index():
 
 @main_bp.route("/check-age", methods=["POST"])
 def check_age():
-    start_time = time.time()  # התחלה
+    start_time = time.time()  
     REQUEST_COUNTER.inc()
     data = request.get_json()
     birth_date_str = data.get("birth_date")
