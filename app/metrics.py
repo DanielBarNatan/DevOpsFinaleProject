@@ -1,4 +1,4 @@
-from prometheus_client import Counter, Histogram
+from prometheus_client import Counter
 
 REQUEST_COUNTER = Counter(
     "total_requests_total", "Total number of requests received"
