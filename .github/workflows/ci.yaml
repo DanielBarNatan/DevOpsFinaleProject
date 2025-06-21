@@ -43,7 +43,7 @@ jobs:
           python-version: 3.11
       - run: |
           pip install -r requirements.txt
-          python -m unittest discover -s app
+          python -m unittest discover -s tests -v
 
   lint:
     name: Run Linter (flake8)
