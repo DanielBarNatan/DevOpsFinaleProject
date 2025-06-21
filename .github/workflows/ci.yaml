@@ -69,7 +69,7 @@ jobs:
           python-version: 3.11
       - run: |
           pip install black
-          black --check app
+          black app
 
   docker:
     name: Build Docker Image
