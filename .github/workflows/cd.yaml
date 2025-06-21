@@ -22,6 +22,5 @@ jobs:
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/starter-app:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/starter-app:latest
 
-      # (שלב אופציונלי) Deploy ל-Render אם יש Webhook
       - name: Trigger Deploy on Render
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
