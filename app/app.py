@@ -3,11 +3,14 @@ from datetime import datetime
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER
 
+
 main_bp = Blueprint("main", __name__)
+
 
 @main_bp.route("/")
 def index():
     return render_template("index.html")
+
 
 @main_bp.route("/check-age", methods=["POST"])
 def check_age():
@@ -26,18 +29,22 @@ def check_age():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
+
 @main_bp.route("/requests", methods=["GET"])
 def requests_count():
     count = REQUEST_COUNTER._value.get()
     return jsonify({"total_requests": int(count)}), 200
 
+
 @main_bp.route("/health")
 def health():
     return "OK", 200
 
+
 @main_bp.route("/metrics")
 def metrics():
     return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
+
 
 def create_app():
     app = Flask(__name__)
