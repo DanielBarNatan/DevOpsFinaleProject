@@ -1,4 +1,4 @@
-from prometheus_client import Counter
+from prometheus_client import Counter, Histogram
 
 REQUEST_COUNTER = Counter(
     "total_requests_total", "Total number of requests received"
@@ -10,4 +10,8 @@ AGE_LEGAL_COUNTER = Counter(
 
 AGE_ILLEGAL_COUNTER = Counter(
     "illegal_age_requests_total", "Number of users under legal age (<18)"
+)
+
+REQUEST_LATENCY = Histogram(
+    "request_latency_seconds", "Time spent processing request in seconds"
 )
