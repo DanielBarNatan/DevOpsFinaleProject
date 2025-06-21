@@ -48,6 +48,11 @@ def metrics():
     return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
 
 
+# @main_bp.route("/cicd-test")
+# def cicd_test():
+#     return "CI/CD Pipeline Working!", 200
+
+
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(main_bp)
