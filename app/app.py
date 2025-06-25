@@ -1,10 +1,15 @@
 from flask import Flask, Blueprint, request, jsonify, Response, render_template
 from datetime import datetime
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
-from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER, AGE_ILLEGAL_COUNTER
-
+import time
+from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER
+from .metrics import AGE_ILLEGAL_COUNTER, REQUEST_LATENCY
 
 main_bp = Blueprint("main", __name__)
+
+# @main_bp.route("/cicd-test")
+# def cicd_test():
+#     return "CI/CD Pipeline Working!", 200
 
 
 @main_bp.route("/")
@@ -14,6 +19,7 @@ def index():
 
 @main_bp.route("/check-age", methods=["POST"])
 def check_age():
+    start_time = time.time()
     REQUEST_COUNTER.inc()
     data = request.get_json()
     birth_date_str = data.get("birth_date")
@@ -30,6 +36,9 @@ def check_age():
         return jsonify({"legal": is_legal, "age": age}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+    finally:
+        duration = time.time() - start_time
+        REQUEST_LATENCY.observe(duration)
 
 
 @main_bp.route("/requests", methods=["GET"])
