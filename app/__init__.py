@@ -7,8 +7,6 @@ from .app import main_bp
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(main_bp)
-
-    # משלבים את Prometheus
     app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
         "/metrics": make_wsgi_app()
     })
