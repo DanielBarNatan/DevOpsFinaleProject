@@ -5,11 +5,8 @@ import time
 from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER
 from .metrics import AGE_ILLEGAL_COUNTER, REQUEST_LATENCY
 
-main_bp = Blueprint("main", __name__)
 
-# @main_bp.route("/cicd-test")
-# def cicd_test():
-#     return "CI/CD Pipeline Working!", 200
+main_bp = Blueprint("main", __name__)
 
 
 @main_bp.route("/")
@@ -55,11 +52,6 @@ def health():
 @main_bp.route("/metrics")
 def metrics():
     return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
-
-
-# @main_bp.route("/cicd-test")
-# def cicd_test():
-#     return "CI/CD Pipeline Working!", 200
 
 
 def create_app():
