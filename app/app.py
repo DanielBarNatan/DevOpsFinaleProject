@@ -5,11 +5,14 @@ import time
 from .metrics import REQUEST_COUNTER, AGE_LEGAL_COUNTER
 from .metrics import AGE_ILLEGAL_COUNTER, REQUEST_LATENCY
 
+
 main_bp = Blueprint("main", __name__)
+
 
 @main_bp.route("/")
 def index():
     return render_template("index.html")
+
 
 @main_bp.route("/check-age", methods=["POST"])
 def check_age():
@@ -34,6 +37,7 @@ def check_age():
         duration = time.time() - start_time
         REQUEST_LATENCY.observe(duration)
 
+
 @main_bp.route("/requests", methods=["GET"])
 def requests_count():
     count = REQUEST_COUNTER._value.get()
@@ -48,6 +52,7 @@ def health():
 @main_bp.route("/metrics")
 def metrics():
     return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
+
 
 def create_app():
     app = Flask(__name__)
