@@ -11,7 +11,6 @@ main_bp = Blueprint("main", __name__)
 def index():
     return render_template("index.html")
 
-
 @main_bp.route("/check-age", methods=["POST"])
 def check_age():
     start_time = time.time()
@@ -34,7 +33,6 @@ def check_age():
     finally:
         duration = time.time() - start_time
         REQUEST_LATENCY.observe(duration)
-
 
 @main_bp.route("/requests", methods=["GET"])
 def requests_count():
