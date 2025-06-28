@@ -23,8 +23,7 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "depn18453y77kb"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -119,8 +118,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "depn18453y77kb"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -215,8 +213,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "depn18453y77kb"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -296,8 +293,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "depn18453y77kb"
+            "type": "prometheus"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -326,7 +322,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Age application",
+  "refresh": "5s",
+  "title": "Age-Checker application",
   "uid": "44f86284-1fb6-4696-85d3-27dbe0bafb1f",
   "version": 8
 }
