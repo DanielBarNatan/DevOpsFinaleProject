@@ -10,7 +10,7 @@ services:
     image: prom/prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus-data:/prometheus  # volume לשמירת הדאטה
+      - prometheus-data:/prometheus
     ports:
       - "9090:9090"
     networks:
@@ -23,7 +23,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - grafana-data:/var/lib/grafana  # volume לשמירת הגדרות ודשבורדים
+      - grafana-data:/var/lib/grafana
       - ./grafana_dashboard.json:/etc/grafana/provisioning/dashboards/age_dashboard.json
       - ./grafana_datasource.yml:/etc/grafana/provisioning/datasources/prometheus.yml
       - ./grafana_dashboard_config.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
