@@ -24,6 +24,9 @@ services:
       - "3000:3000"
     volumes:
       - grafana-data:/var/lib/grafana  # volume לשמירת הגדרות ודשבורדים
+      - ./grafana_dashboard.json:/etc/grafana/provisioning/dashboards/age_dashboard.json
+      - ./grafana_datasource.yml:/etc/grafana/provisioning/datasources/prometheus.yml
+      - ./grafana_dashboard_config.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
     networks:
       - monitor
 
